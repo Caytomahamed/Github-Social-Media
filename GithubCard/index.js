@@ -34,6 +34,94 @@
       </div>
     </div>
 */
+function githubCard(imgAc,AcName,Acusername,Acloction,Acaddr,Acfollowers,Acfollowering,AcBio){
+
+  //Creat element 
+  const card =document.createElement('div')
+  const cardImg =document.createElement('img')
+  const cardInfo =document.createElement('div')
+  const name =document.createElement('h3')
+  const username =document.createElement('p')
+  const location=document.createElement('p')
+  const Profile =document.createElement('p')
+  const ProfileAddr=document.createElement('a')
+  const followers =document.createElement('p')
+  const followering =document.createElement('p')
+  const Bio =document.createElement('p')
+ 
+
+  //connect 
+  card.appendChild(cardImg)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(name)
+  cardInfo.appendChild(username)
+  cardInfo.appendChild(location)
+  cardInfo.appendChild(Profile)
+  Profile.appendChild(ProfileAddr)
+  cardInfo.appendChild(followers)
+  cardInfo.appendChild(followering)
+  cardInfo.appendChild(Bio)
+  
+  //added conten
+
+  cardImg.src =imgAcc
+  name.textContent =AccName
+  username.textContent =Accusername
+  location.textContent = "Loction: " + "  " + Accloction
+  Profile.textContent = "profile: " + ProfileAddr
+  ProfileAddr.href =Accaddr
+  followers.textContent ="followers:  " + Accfollowers
+  followering.textContent ="followerjng  " + Accfollowering
+  Bio.textContent=AccBio
+
+
+  //add CSS
+  card.classList.add("card")
+  cardInfo.classList.add("card-info")
+  name.classList.add("name")
+  username.classList.add("username")
+
+
+  // return parent 
+  return card
+}
+
+// SELECT PARENT ELEMET 
+const cards=document.querySelector(".cards")
+
+
+//CONNENT TO THE CHILD TO PARENT 
+axios.get("https://api.github.com/users/caytomahamed")
+
+.then(response => {
+
+response.data.forEach(function(info) {
+   let imgAcc = info.avatar_url
+   let AccName = info.name
+   let Accusername = info.login
+   let Accloction = info.location
+   let Accaddr = info.html_url
+   let Accfollowers= info.followers
+   let Accfollowering = info.followers
+   let AccBio = info.bio
+   console.log(info)
+
+   
+cards.appendChild(githubCard(img,Name,username,loction,addr,followers,followering,Bio))
+ });
+})
+.catch(err => {
+  
+  console.log(err.events_url)
+  })
+  
+
+
+
+
+
+// cards.appendChild(githubCard())
+
 
 
 
