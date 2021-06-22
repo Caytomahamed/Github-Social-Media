@@ -34,6 +34,13 @@
       </div>
     </div>
 */
+
+
+
+
+// co CARD 
+
+
 function githubCard(imgAc,AcName,Acusername,Acloction,Acaddr,Acfollowers,Acfollowering,AcBio){
 
   //Creat element 
@@ -57,22 +64,22 @@ function githubCard(imgAc,AcName,Acusername,Acloction,Acaddr,Acfollowers,Acfollo
   cardInfo.appendChild(username)
   cardInfo.appendChild(location)
   cardInfo.appendChild(Profile)
-  Profile.appendChild(ProfileAddr)
   cardInfo.appendChild(followers)
   cardInfo.appendChild(followering)
   cardInfo.appendChild(Bio)
+  Profile.appendChild(ProfileAddr)
   
   //added conten
 
-  cardImg.src =imgAcc
-  name.textContent =AccName
-  username.textContent =Accusername
-  location.textContent = "Loction: " + "  " + Accloction
-  Profile.textContent = "profile: " + ProfileAddr
-  ProfileAddr.href =Accaddr
-  followers.textContent ="followers:  " + Accfollowers
-  followering.textContent ="followerjng  " + Accfollowering
-  Bio.textContent=AccBio
+  cardImg.src =imgAc//
+  name.textContent =AcName//
+  username.textContent =Acusername//
+  location.textContent = "Loction: " + "  " + Acloction//
+  Profile.textContent = "profile: " + Acaddr
+  ProfileAddr.href =Acaddr
+  followers.textContent ="followers:  " + Acfollowers
+  followering.textContent ="followering  " + Acfollowering
+  Bio.textContent=AcBio
 
 
   //add CSS
@@ -90,37 +97,103 @@ function githubCard(imgAc,AcName,Acusername,Acloction,Acaddr,Acfollowers,Acfollo
 const cards=document.querySelector(".cards")
 
 
-//CONNENT TO THE CHILD TO PARENT 
-axios.get("https://api.github.com/users/caytomahamed")
+
+
+//USTAADKA 
+
+//HTTP / API REQUEST 
+
+
+//PROMISE 1
+axios.get("https://api.github.com/users/duraanali")
 
 .then(response => {
 
-response.data.forEach(function(info) {
-   let imgAcc = info.avatar_url
-   let AccName = info.name
-   let Accusername = info.login
-   let Accloction = info.location
-   let Accaddr = info.html_url
-   let Accfollowers= info.followers
-   let Accfollowering = info.followers
-   let AccBio = info.bio
-   console.log(info)
+   let imgAcc = response.data.avatar_url
+   let AccName = response.data.name
+   let Accusername = response.data.login
+   let Accloction = response.data.location
+   let Accaddr = response.data.html_url
+   let Accfollowers= response.data.followers
+   let Accfollowering = response.data.following
+   let AccBio = response.data.bio
 
    
-cards.appendChild(githubCard(img,Name,username,loction,addr,followers,followering,Bio))
+cards.appendChild(githubCard(imgAcc,AccName,Accusername,Accloction,Accaddr,Accfollowers,Accfollowering,AccBio))
  });
+
+
+
+// CAYDARUUS CARD 
+
+//HTTP / API REQUEST
+axios.get("https://api.github.com/users/caytomahamed")
+
+//PROMISE 2
+
+.then(response => {
+
+  let imgAcc = response.data.avatar_url
+  let AccName = response.data.name
+  let Accusername = response.data.login
+  let Accloction = response.data.location
+  let Accaddr = response.data.html_url
+  let Accfollowers= response.data.followers
+  let Accfollowering = response.data.following
+  let AccBio = response.data.bio
+
+  
+cards.appendChild(githubCard(imgAcc,AccName,Accusername,Accloction,Accaddr,Accfollowers,Accfollowering,AccBio))
+ });
+
+
+
+//JOHN DOE
+
+//HTTP / API REQUEST
+axios.get("https://api.github.com/users/abdifatahdev")
+
+//PROMISE 3
+
+.then(response => {
+  let imgAcc = response.data.avatar_url
+  let AccName = response.data.name
+  let Accusername = response.data.login
+  let Accloction = response.data.location
+  let Accaddr = response.data.html_url
+  let Accfollowers= response.data.followers
+  let Accfollowering = response.data.following
+  let AccBio = response.data.bio
+
+  
+cards.appendChild(githubCard(imgAcc,AccName,Accusername,Accloction,Accaddr,Accfollowers,Accfollowering,AccBio))
+ })
+
+ .catch(err => {
+  console.log(err.message)
 })
-.catch(err => {
-  
-  console.log(err.events_url)
-  })
-  
 
 
 
+// COLCULATION  ERRORS
 
 
-// cards.appendChild(githubCard())
+// imgAc,AcName,Acusername,Acloction,Acaddr,Acfollowers,Acfollowering,AcBio  =   data waxa laga soo jiidaayo magaceeda 
+
+// imgAcc,AccName,Accusername,Accloction,Accaddr,Accfollowers,Accfollowering,AccBio     =  data waxa laga soo jiidaayo magaceeda 
+
+
+//CONTENT
+// cardImg.src =imgAc//data.avatar_url
+// name.textContent =AcName//data.name
+// username.textContent =Acusername//data.login
+// location.textContent = "Loction: " + "  " + Acloction//data.location
+// Profile.textContent = "profile: " + Acaddr
+// ProfileAddr.href =Acaddr//data.html_url
+// followers.textContent ="followers:  " + Acfollowers//data.followers
+// followering.textContent ="followering  " + Acfollowering//data.following
+// Bio.textContent=AcBio//data.bio
+
 
 
 
@@ -139,6 +212,30 @@ cards.appendChild(githubCard(img,Name,username,loction,addr,followers,followerin
     Using that array, iterate over it, requesting data for each user, creating a new card for each user, and adding that card to the DOM.
 */
 
-const followersArray = [];
 
+
+// const followersArray = ["khalidino","abdifatahdev"];
+
+
+// axios.get("https://api.github.com/users/duraanali/followers")
+
+// .then(res => {
+//   res.data.forEach((data)=>{
+
+  
+//    if ( data.name == followersArray) {
+//     let imgAcc = data.avatar_url
+//     let AccName = data.name
+//     let Accusername = data.login
+//     let Accloction = data.location
+//     let Accaddr = data.html_url
+//     let Accfollowers= data.followers
+//     let Accfollowering = data.following
+//     let AccBio = data.bio
+
+//     cards.appendChild(githubCard(imgAcc,AccName,Accusername,Accloction,Accaddr,Accfollowers,Accfollowering,AccBio))    
+//    }
+  
+//   } )
+// })
 
